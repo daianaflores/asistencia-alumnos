@@ -1,6 +1,9 @@
-package BLL;
+package bll;
 
-public class alumnos {	
+import bll.Alumno;
+
+
+public class Alumno {	
 		
 		private int id ;
 		private int numeroMatricula;

@@ -1,4 +1,4 @@
-package DAL;
+package dal;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,11 +7,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import BLL.alumno;
-import DAL.Conexion;
+import bll.Alumno;
+
+import dal.Conexion;
 
 
-public class alumnoDAO {
+public class AlumnoDAO {
 	
 	    private static final String SELECTALUMNO = 
 	    "SELECT ID_PERSONA, NRO_DNI, APELLIDO, NOMBRE, GENERO, EDAD, EMAIL FROM PERSONAS";
@@ -24,19 +25,19 @@ public class alumnoDAO {
 	    private static final String MAXALUMNO= "SELECT MAX(ID_PERSONA) + 1 AS MAXIMO FROM PERSONAS";
 	    
 	    
-	    public List<alumno> getAlumno(){
-			ArrayList<alumno> alumno = new ArrayList<alumno>();
+	    public List<Alumno> getAlumno(){
+			ArrayList<Alumno> Alumno = new ArrayList<Alumno>();
 			Connection con = Conexion.getConexion();
 			
 			try {
 				PreparedStatement stmn = null;
 
 				ResultSet rs = null;
-				alumno alumnoa;
+				Alumno Alumnoa;
 				while (rs.next()) {
-					alumnoa = new alumno();
+					Alumnoa = new Alumno();
 		
-					alumno.add(alumnoa);
+					Alumno.add(Alumnoa);
 				}
 
 			
@@ -44,10 +45,10 @@ public class alumnoDAO {
 				e.printStackTrace();
 			}
 			
-			return alumno;
+			return Alumno;
 	    }
 	    
-		public int insertAlumno(alumno alumno) {
+		public int insertAlumno(Alumno Alumno) {
 			Connection con = Conexion.getConexion();
 			PreparedStatement stmn = null;
 			ResultSet rs = null;
