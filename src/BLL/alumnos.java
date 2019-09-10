@@ -1,16 +1,13 @@
 package BLL;
 
-import java.sql.Date;
-
-
-public class alumno {	
+public class alumnos {	
 		
 		private int id ;
 		private int numeroMatricula;
 		private String nombre;
 		private String apellido;
 		private int dni;
-		private int fechaDeNacimiento;
+		private java.util.Date fechaDeNacimiento;
 		private int Estado;
 		
 		
@@ -44,10 +41,11 @@ public class alumno {
 		public void setDni(int dni) {
 			this.dni = dni;
 		}
-		public int getFechaDeNacimiento() {
+
+		public java.util.Date getFechaDeNacimiento() {
 			return fechaDeNacimiento;
 		}
-		public void setFechaDeNacimiento(int fechaDeNacimiento) {
+		public void setFechaDeNacimiento(java.util.Date fechaDeNacimiento) {
 			this.fechaDeNacimiento = fechaDeNacimiento;
 		}
 		public int getEstado() {
@@ -58,13 +56,4 @@ public class alumno {
 		}
 		
 }
-		
-		
-
-		
-		
-		
-	
-
-
 
