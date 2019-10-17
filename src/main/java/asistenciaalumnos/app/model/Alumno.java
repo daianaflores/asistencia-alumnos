@@ -22,7 +22,6 @@ public class Alumno extends Auditable<String>{
 	@Column(name = "apellido", length = 30, nullable = false)
 	private String apellido;
 
-	//no debería estar en contacto?
 	@Column(name = "email", length = 100, nullable = false)
 	private String email;
 
