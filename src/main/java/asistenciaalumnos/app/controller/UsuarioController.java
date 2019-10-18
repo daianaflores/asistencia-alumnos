@@ -1,5 +1,7 @@
 package asistenciaalumnos.app.controller;
 
+
+import asistenciaalumnos.app.model.DTO.UsuarioDto;
 import asistenciaalumnos.app.model.Usuario;
 import asistenciaalumnos.app.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin(origins = "*",
@@ -30,10 +33,9 @@ public class UsuarioController {
     public ResponseEntity<?> alumnos() throws Exception
     {
         List<Usuario> usuarios = new ArrayList<Usuario>();
-
         usuarios.addAll(usuarioService.getUsuarios());
-
-        return new ResponseEntity<List<Usuario>>(usuarios, HttpStatus.OK);
+        List<UsuarioDto> usuarioDtoList = usuarios.stream().map(it -> new UsuarioDto(it)).collect(Collectors.toList());
+        return new ResponseEntity<List<UsuarioDto>>(usuarioDtoList, HttpStatus.OK);
     }
 
     //service devuelve int no instancia de usuario
@@ -46,6 +48,8 @@ public class UsuarioController {
         return new ResponseEntity<>(, HttpStatus.OK);
     }*/
     //metodo modificado según service
+
+
     @PutMapping(path = "/usuarios")
     public ResponseEntity<?> modificacionUsuario(@RequestBody Usuario usuario) throws Exception
     {

@@ -7,20 +7,13 @@ import java.util.Date;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
-@Table(name = "Contacto")
-public class Contacto extends Auditable<String> {
+@Table(name = "TIPO_CONTACTO")
+public class TipoContacto extends Auditable<String> {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "ID", unique = true, nullable = false)
     private Long id;
-
-    /*Faltan campos?
-    */
-
-    @OneToOne(orphanRemoval=true)
-    @JoinColumn(name = "ID_TIPO_CONTACTO", referencedColumnName = "ID")
-    private TipoContacto tipoContacto;
 
     @Column(name = "descripcion", length = 500, nullable = false)
     private String descripcion;
@@ -36,8 +29,7 @@ public class Contacto extends Auditable<String> {
         this.lastModifiedDate = new Date();
     }
 
-    public Contacto()
-    {
+    public TipoContacto(){
         super();
     }
 
@@ -49,14 +41,6 @@ public class Contacto extends Auditable<String> {
         this.id = id;
     }
 
-    public TipoContacto getTipoContacto() {
-        return tipoContacto;
-    }
-
-    public void setTipoContacto(TipoContacto tipoContacto) {
-        this.tipoContacto = tipoContacto;
-    }
-
     public String getDescripcion() {
         return descripcion;
     }
@@ -65,3 +49,5 @@ public class Contacto extends Auditable<String> {
         this.descripcion = descripcion;
     }
 }
+
+
