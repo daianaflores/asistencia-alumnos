@@ -2,7 +2,9 @@ package asistenciaalumnos.app.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import asistenciaalumnos.app.model.DTO.AlumnoDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,29 +45,31 @@ public class AlumnoController
         List<Alumno> alumnos = new ArrayList<Alumno>();
         
         alumnos.addAll(alumnoService.getAlumnos());
-        
-        return new ResponseEntity<List<Alumno>>(alumnos, HttpStatus.OK);
+
+        List<AlumnoDto> AlumnoDtoList = alumnos.stream().map(it -> new AlumnoDto(it)).collect(Collectors.toList());
+        return new ResponseEntity<List<AlumnoDto>>(AlumnoDtoList, HttpStatus.OK);
     }
 
     @PostMapping(path = "/alumnos")
     public ResponseEntity<?> altaAlumno(@RequestBody Alumno alumno) throws Exception
     {
         Alumno alumnoResponse = alumnoService.altaAlumno(alumno);
+        AlumnoDto alumnoDto = new AlumnoDto(alumno);
 
-        return new ResponseEntity<Alumno>(alumnoResponse, HttpStatus.OK);
+        return new ResponseEntity<AlumnoDto>(alumnoDto, HttpStatus.OK);
     }
 
     @PutMapping(path = "/alumnos")
     public ResponseEntity<?> modificacionAlumno(@RequestBody Alumno alumno) throws Exception
     {
         Alumno alumnoResponse = alumnoService.modificacionAlumno(alumno);
-
+        AlumnoDto alumnoDto = new AlumnoDto(alumnoResponse);
         if (alumnoResponse == null)
         {
             return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
         }
 
-        return new ResponseEntity<Alumno>(alumnoResponse, HttpStatus.OK);
+        return new ResponseEntity<AlumnoDto>(alumnoDto, HttpStatus.OK);
     }
 
     @DeleteMapping(path = "/alumnos/{id}")

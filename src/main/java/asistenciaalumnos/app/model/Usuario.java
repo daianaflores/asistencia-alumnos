@@ -5,7 +5,7 @@ import java.util.Date;
 public class Usuario extends Auditable<String> {
 
     private Long id ;
-    private Long idTipoUsuario;
+    private TipoUsuario tipoUsuario;
     private String nombre;
     private String apellido;
     private Long dni;
@@ -13,8 +13,8 @@ public class Usuario extends Auditable<String> {
     private Long legajo;
     private String usser;
     private String password;
-    private Long idEstado;
-    private Long idContacto;
+    private Estado estado;
+    private Contacto contacto;
 
     public Long getId() {
         return id;
@@ -22,14 +22,6 @@ public class Usuario extends Auditable<String> {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getIdTipoUsuario() {
-        return idTipoUsuario;
-    }
-
-    public void setIdTipoUsuario(Long idTipoUsuario) {
-        this.idTipoUsuario = idTipoUsuario;
     }
 
     public String getNombre() {
@@ -88,19 +80,27 @@ public class Usuario extends Auditable<String> {
         this.password = password;
     }
 
-    public Long getIdEstado() {
-        return idEstado;
+    public TipoUsuario getTipoUsuario() {
+        return tipoUsuario;
     }
 
-    public void setIdEstado(Long idEstado) {
-        this.idEstado = idEstado;
+    public void setTipoUsuario(TipoUsuario tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
     }
 
-    public Long getIdContacto() {
-        return idContacto;
+    public Estado getEstado() {
+        return estado;
     }
 
-    public void setIdContacto(Long idContacto) {
-        this.idContacto = idContacto;
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
+
+    public Contacto getContacto() {
+        return contacto;
+    }
+
+    public void setContacto(Contacto contacto) {
+        this.contacto = contacto;
     }
 }
