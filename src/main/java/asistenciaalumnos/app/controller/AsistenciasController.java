@@ -55,25 +55,24 @@ public class AsistenciasController {
 
         return new ResponseEntity<Asistencia>(asistenciaResponse, HttpStatus.OK);
     }
-//#######################################################################################
-//#######################################################################################
-    @PutMapping(path = "/alumnos")
-    public ResponseEntity<?> modificacionAlumno(@RequestBody Alumno alumno) throws Exception
-    {
-        Alumno alumnoResponse = alumnoService.modificacionAlumno(alumno);
 
-        if (alumnoResponse == null)
+    @PutMapping(path = "/asistencias")
+    public ResponseEntity<?> modificacionAsistencia(@RequestBody Asistencia asistencia) throws Exception
+    {
+    	Asistencia asistenciaResponse = asistenciaService.modificacionAsistencia(asistencia);
+
+        if (asistenciaResponse == null)
         {
             return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
         }
 
-        return new ResponseEntity<Alumno>(alumnoResponse, HttpStatus.OK);
+        return new ResponseEntity<Asistencia>(asistenciaResponse, HttpStatus.OK);
     }
 
-    @DeleteMapping(path = "/alumnos/{id}")
-    public ResponseEntity<?> bajaAlumno(@PathVariable("id") Long id) throws Exception
+    @DeleteMapping(path = "/asistencias/{id}")
+    public ResponseEntity<?> bajaAsistencia(@PathVariable("id") Long id) throws Exception
     {
-        alumnoService.bajaAlumno(id);
+    	asistenciaService.bajaAsistencia(id);
 
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
