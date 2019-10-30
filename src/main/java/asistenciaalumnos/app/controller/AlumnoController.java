@@ -42,12 +42,14 @@ public class AlumnoController
     @GetMapping(path = "/alumnos")
     public ResponseEntity<?> alumnos() throws Exception 
     {
-        List<Alumno> alumnos = new ArrayList<Alumno>();
-        
-        alumnos.addAll(alumnoService.getAlumnos());
+        List<AlumnoDto> alumnos = null;
+        try {
+            alumnos = alumnoService.getAlumnos();
+        } catch (Exception ex) {
+            return new ResponseEntity<List<AlumnoDto>>(alumnos, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
 
-        List<AlumnoDto> AlumnoDtoList = alumnos.stream().map(it -> new AlumnoDto(it)).collect(Collectors.toList());
-        return new ResponseEntity<List<AlumnoDto>>(AlumnoDtoList, HttpStatus.OK);
+        return new ResponseEntity<List<AlumnoDto>>(alumnos, HttpStatus.OK);
     }
 
     @PostMapping(path = "/alumnos")

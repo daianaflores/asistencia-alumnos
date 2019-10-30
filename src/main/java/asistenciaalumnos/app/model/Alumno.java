@@ -1,6 +1,5 @@
 package asistenciaalumnos.app.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -32,7 +31,6 @@ public class Alumno extends Auditable<String>{
 	@Column(name = "DNI", nullable = false)
 	private Long DNI;
 
-	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_ESTADO", nullable = false)
 	private Estado estado;
